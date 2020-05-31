@@ -2,7 +2,8 @@ import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
 import TaskListComponent from "./components/TaskListComponent";
 import TaskShowComponent from "./components/TaskShowComponent";
-import TaskShowComponent from "./components/TaskCreateComponent";
+import TaskCreateComponent from "./components/TaskCreateComponent";
+import TaskEditComponent from "./components/TaskEditComponent";
 
 
 
@@ -16,7 +17,6 @@ Vue.component('header-component', HeaderComponent);
 
 Vue.use(VueRouter);
 
-// 「/tasks」のURLでアクセスしたら「TaskListComponent」を表示する。このルーティングの名前は「task.list」である。
 const router = new VueRouter({
     mode: 'history',
     routes: [{
@@ -34,6 +34,12 @@ const router = new VueRouter({
             path: '/tasks/create',
             name: 'task.create',
             component: TaskCreateComponent,
+        },
+        {
+            path: '/tasks/:taskId/edit',
+            name: 'task.edit',
+            component: TaskEditComponent,
+            props: true
         },
     ]
 });
