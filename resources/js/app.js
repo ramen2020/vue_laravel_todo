@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
 import TaskListComponent from "./components/TaskListComponent";
+import TaskShowComponent from "./components/TaskShowComponent";
 
 
 
@@ -18,10 +19,17 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes: [{
-        path: '/tasks',
-        name: 'task.list',
-        component: TaskListComponent
-    }, ]
+            path: '/tasks',
+            name: 'task.list',
+            component: TaskListComponent
+        },
+        {
+            path: '/tasks/:taskId',
+            name: 'task.show',
+            component: TaskShowComponent,
+            props: true
+        },
+    ]
 });
 
 const app = new Vue({
