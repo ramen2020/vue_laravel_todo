@@ -10,10 +10,12 @@
                     <div class="form-group row">
                         <label for="title" class="col-sm-3 col-form-label">Title</label>
                         <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title">
+                        <span v-if="error_messages.title" style="color:red">{{ error_messages.title[0] }}</span>
                     </div>
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label">Content</label>
                         <input type="text" class="col-sm-9 form-control" id="content" v-model="task.content">
+                        <span v-if="error_messages.content" style="color:red">{{ error_messages.content[0] }}</span>
                     </div>
                     <div class="form-group row">
                         <label for="person-in-charge" class="col-sm-3 col-form-label">Person In Charge</label>
@@ -33,7 +35,8 @@
         },
         data: function () {
             return {
-                task: {}
+                task: {},
+                error_messages: {}
             }
         },
         methods: {
@@ -47,7 +50,10 @@
                 axios.put('/api/tasks/' + this.taskId, this.task)
                     .then((res) => {
                         this.$router.push({name: 'task.list'})
-                    });
+                    })
+                    .catch(error => {
+                        this.error_messages = error.response.data.errors
+                    });;
             }
         },
         mounted() {

@@ -35,6 +35,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|min:5|max:50',
+            'content' => 'required|min:5|max:300',
+        ]);
+
         return Task::create($request->all());
     }
 
@@ -69,6 +74,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        $this->validate($request, [
+            'title' => 'required|min:5|max:50',
+            'content' => 'required|min:5|max:300',
+        ]);
+
         $task->update($request->all());
 
         return $task;
@@ -80,10 +90,8 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        $task->delete();
-
-        return $task;
+        Task::where('id', $id)->delete();
     }
 }
