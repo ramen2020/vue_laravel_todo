@@ -4,7 +4,7 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col" @click="sortTasksById(id_flg)"><button>#</button></th>
-                    <th scope="col">category</th>
+                    <th scope="col" @click="getTasksByCategoryId(category_id)"><button>category</button></th>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Person In Charge</th>
@@ -46,6 +46,7 @@
                 tasks: [],
                 category_label: [], //category_id　変換用
                 id_flg: 1,
+                category_id: 1,
             }
         },
         methods: {
@@ -69,9 +70,19 @@
                     this.id_flg = 1;
                 }
                 axios.get('/api/tasks/id/' + this.id_flg)
-                .then((res) => {
-                    this.tasks = res.data;
-                });
+                    .then((res) => {
+                        this.tasks = res.data;
+                    });
+            },
+            getTasksByCategoryId(category_id) {
+                if(category_id == 5) {
+                    this.category_id = 1;
+                }
+                axios.get('/api/tasks/category/' + this.category_id)
+                    .then((res) => {
+                        this.tasks = res.data;
+                        this.category_id += 1;
+                    });
             }
         },
         mounted() {

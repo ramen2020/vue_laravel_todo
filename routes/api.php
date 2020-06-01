@@ -23,3 +23,4 @@ Route::get('/tasks/{id}', 'TaskController@show');
 Route::put('/tasks/{task}', 'TaskController@update');
 Route::delete('/tasks/{task}', 'TaskController@destroy');
 Route::get('/tasks/id/{count}', 'TaskController@sortTasksById');
+Route::get('/tasks/category/{category_id}', 'TaskController@getTaskByCategoryId');

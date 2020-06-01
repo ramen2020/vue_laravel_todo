@@ -123,4 +123,15 @@ class TaskController extends Controller
     {
         Task::where('id', $id)->delete();
     }
+
+    /**
+     * category_idからtaskを取得
+     *
+     * @param int $category_id
+     * @return json
+     */
+    public function getTaskByCategoryId($category_id) {
+        $tasks = Task::where('category_id', $category_id)->get();
+        return $tasks;
+    }
 }

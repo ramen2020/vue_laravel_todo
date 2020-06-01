@@ -55,7 +55,8 @@
                 console.log(this.taskId);
                 axios.get('/api/tasks/' + this.taskId)
                     .then((res) => {
-                        this.task = res.data[0];
+                        console.log(res.data);
+                        this.task = res.data[0][0];
                         this.category_label = res.data[1];
                     });
             }
