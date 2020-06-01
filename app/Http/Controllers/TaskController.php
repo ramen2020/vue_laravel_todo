@@ -21,7 +21,7 @@ class TaskController extends Controller
     {
         $data = [
             Task::all(),
-            $this->label
+            $this->label,
         ];
 
         return $data;
@@ -74,8 +74,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
+
+        $task = Task::where('id', $id)->get();
 
         return [$task, $this->label];
     }
