@@ -15,7 +15,7 @@ class TaskController extends Controller
     /**
      * taskデータを全取得
      *
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class TaskController extends Controller
     /**
      * IDの降順に並べる
      *
-     * @return void
+     * @return json
      */
     public function sortTasksById($id_flg)
     {
@@ -52,10 +52,10 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 保存
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return
      */
     public function store(Request $request)
     {
@@ -72,13 +72,10 @@ class TaskController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return json
      */
-    public function show($id)
+    public function show(Task $task)
     {
-
-        $task = Task::where('id', $id)->get();
-
         return [$task, $this->label];
     }
 
@@ -94,11 +91,11 @@ class TaskController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param json
+     * @return json
      */
     public function update(Request $request, Task $task)
     {
@@ -114,10 +111,10 @@ class TaskController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 削除
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function destroy($id)
     {
@@ -130,7 +127,8 @@ class TaskController extends Controller
      * @param int $category_id
      * @return json
      */
-    public function getTaskByCategoryId($category_id) {
+    public function getTaskByCategoryId($category_id)
+    {
         $tasks = Task::where('category_id', $category_id)->get();
         return $tasks;
     }

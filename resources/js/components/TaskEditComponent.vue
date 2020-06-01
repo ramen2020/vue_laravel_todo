@@ -55,11 +55,8 @@
         },
         methods: {
             getTaskById() {
-                
-
                 axios.get('/api/tasks/' + this.taskId)
                     .then((res) => {
-                        
                         this.task = res.data[0];
                         console.log(this.task);
                     });

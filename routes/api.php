@@ -11,16 +11,20 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/tasks', 'TaskController@index');
-Route::post('/tasks', 'TaskController@store');
-Route::get('/tasks/{id}', 'TaskController@show');
-Route::put('/tasks/{task}', 'TaskController@update');
-Route::delete('/tasks/{task}', 'TaskController@destroy');
-Route::get('/tasks/id/{count}', 'TaskController@sortTasksById');
-Route::get('/tasks/category/{category_id}', 'TaskController@getTaskByCategoryId');
+Route::prefix('tasks')->group(function () {
+
+    Route::get('/', 'TaskController@index');
+    Route::post('/', 'TaskController@store');
+    Route::get('/{task}', 'TaskController@show');
+    Route::put('/{task}', 'TaskController@update');
+    Route::delete('/{task}', 'TaskController@destroy');
+    Route::get('/id/{count}', 'TaskController@sortTasksById');
+    Route::get('/category/{category_id}', 'TaskController@getTaskByCategoryId');
+
+});
