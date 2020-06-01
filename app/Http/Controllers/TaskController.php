@@ -18,6 +18,20 @@ class TaskController extends Controller
     }
 
     /**
+     * IDの降順に並べる
+     *
+     * @return void
+     */
+    public function sortTasksById($id_flg)
+    {
+        if ($id_flg === '2') {
+            return Task::orderby('id', "DESC")->get();
+        } else {
+            return Task::orderby('id', "ASC")->get();
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

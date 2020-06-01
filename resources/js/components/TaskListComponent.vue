@@ -3,7 +3,7 @@
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" @click="sortTasksById(id_flg)"><button>#</button></th>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Person In Charge</th>
@@ -41,7 +41,8 @@
     export default {
         data: function () {
             return {
-                tasks: []
+                tasks: [],
+                id_flg: 1,
             }
         },
         methods: {
@@ -56,6 +57,17 @@
                     .then((res) => {
                         this.getAllTasks();
                     });
+            },
+            sortTasksById(id_flg) {
+                if(id_flg === 1) {
+                    this.id_flg = 2;
+                } else {
+                    this.id_flg = 1;
+                }
+                axios.get('/api/tasks/id/' + this.id_flg)
+                .then((res) => {
+                    this.tasks = res.data;
+                });
             }
         },
         mounted() {
