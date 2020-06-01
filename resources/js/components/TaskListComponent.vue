@@ -4,6 +4,7 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col" @click="sortTasksById(id_flg)"><button>#</button></th>
+                    <th scope="col">category</th>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Person In Charge</th>
@@ -15,6 +16,7 @@
             <tbody>
                 <tr v-for="task in tasks">
                     <th scope="row">{{ task.id }}</th>
+                    <td>{{ category_label[task.category_id] }}</td>
                     <td>{{ task.title }}</td>
                     <td>{{ task.content }}</td>
                     <td>{{ task.person_in_charge }}</td>
@@ -42,6 +44,7 @@
         data: function () {
             return {
                 tasks: [],
+                category_label: [], //category_id　変換用
                 id_flg: 1,
             }
         },
@@ -49,7 +52,8 @@
             getAllTasks() {
                 axios.get('/api/tasks')
                     .then((res) => {
-                        this.tasks = res.data;
+                        this.tasks = res.data[0];
+                        this.category_label = res.data[1];
                     });
             },
             deleteTask(id) {

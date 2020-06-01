@@ -9,6 +9,11 @@
                             v-model="task.id">
                     </div>
                     <div class="form-group row border-bottom">
+                        <label for="category_id" class="col-sm-3 col-form-label">category</label>
+                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="category_id"
+                            v-model="category_label[task.category_id]">
+                    </div>
+                    <div class="form-group row border-bottom">
                         <label for="title" class="col-sm-3 col-form-label">Title</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="title"
                             v-model="task.title">
@@ -50,7 +55,8 @@
                 console.log(this.taskId);
                 axios.get('/api/tasks/' + this.taskId)
                     .then((res) => {
-                        this.task = res.data;
+                        this.task = res.data[0];
+                        this.category_label = res.data[1];
                     });
             }
         },

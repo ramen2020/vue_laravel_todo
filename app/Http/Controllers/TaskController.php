@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->label = config('data.category_label');
+    }
     /**
      * taskデータを全取得
      *
@@ -14,7 +19,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::all();
+        $data = [
+            Task::all(),
+            $this->label
+        ];
+
+        return $data;
     }
 
     /**
@@ -50,6 +60,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'category_id' => 'required|min:1|max:4',
             'title' => 'required|min:5|max:50',
             'content' => 'required|min:5|max:300',
         ]);
@@ -65,7 +76,8 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return $task;
+
+        return [$task, $this->label];
     }
 
     /**
@@ -89,6 +101,7 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         $this->validate($request, [
+            'category_id' => 'required|min:1|max:4',
             'title' => 'required|min:5|max:50',
             'content' => 'required|min:5|max:300',
         ]);

@@ -20,7 +20,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes: [{
-            path: '/tasks',
+            path: '/',
             name: 'task.list',
             component: TaskListComponent
         },

@@ -4,6 +4,20 @@
             <div class="col-sm-6">
                 <form v-on:submit.prevent="submit">
                     <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-form-label">Category</label>
+                        <div class="col-sm-9 form-control">
+                            <input type="radio" id="1" value="1" v-model="task.category_id">
+                            <label for="category_id">趣味</label>
+                            <input type="radio" id="2" value="2" v-model="task.category_id">
+                            <label for="category_id">勉強</label>
+                            <input type="radio" id="3" value="3" v-model="task.category_id">
+                            <label for="category_id">恋愛</label>
+                            <input type="radio" id="4" value="4" v-model="task.category_id">
+                            <label for="category_id">仕事</label>
+                        </div>
+                        <span v-if="error_messages.category_id" style="color:red">{{ error_messages.category_id[0] }}</span>
+                    </div>
+                    <div class="form-group row">
                         <label for="title" class="col-sm-3 col-form-label">Title</label>
                         <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title">
                         <span v-if="error_messages.title" style="color:red">{{ error_messages.title[0] }}</span>
