@@ -1,5 +1,6 @@
 import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
+import FooterComponent from "./components/FooterComponent";
 import TaskListComponent from "./components/TaskListComponent";
 import TaskShowComponent from "./components/TaskShowComponent";
 import TaskCreateComponent from "./components/TaskCreateComponent";
@@ -13,6 +14,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('header-component', HeaderComponent);
+Vue.component('footer-component', FooterComponent);
 
 Vue.use(VueRouter);
 Vue.use(Vuetify);
