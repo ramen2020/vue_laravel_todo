@@ -5,5 +5,5 @@ This is a simple todo app that I made using vue.js and Laravel, creating APIs in
 
 ## ・version
 |php|Laravel|Vue.js|
-|:--|--:|:--:|
+|:--:|:--:|:--:|
 |7.2|6.1|2.6|
