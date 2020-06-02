@@ -63,6 +63,7 @@
                         this.getAllTasks();
                     });
             },
+            // id_flgが１：降順、２：昇順　で並び替え
             sortTasksById(id_flg) {
                 if(id_flg === 1) {
                     this.id_flg = 2;
@@ -74,8 +75,9 @@
                         this.tasks = res.data;
                     });
             },
+            // category_idで検索
             getTasksByCategoryId(category_id) {
-                if(category_id == 5) {
+                if(category_id === 5) {
                     this.category_id = 1;
                 }
                 axios.get('/api/tasks/category/' + this.category_id)

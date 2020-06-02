@@ -28,8 +28,9 @@ class TaskController extends Controller
     }
 
     /**
-     * IDの降順に並べる
-     *
+     * IDの降順・昇順の並び替え
+     * 送られてきたid_flagが
+     *　１：昇順　、２：降順
      * @return json
      */
     public function sortTasksById($id_flg)
