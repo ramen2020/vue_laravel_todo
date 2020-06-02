@@ -4,21 +4,18 @@ import TaskListComponent from "./components/TaskListComponent";
 import TaskShowComponent from "./components/TaskShowComponent";
 import TaskCreateComponent from "./components/TaskCreateComponent";
 import TaskEditComponent from "./components/TaskEditComponent";
-
-
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 
 require('./bootstrap');
 
 window.Vue = require('vue');
-import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
-Vue.use(Vuetify);
-
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('header-component', HeaderComponent);
 
 Vue.use(VueRouter);
+Vue.use(Vuetify);
 
 const router = new VueRouter({
     mode: 'history',
