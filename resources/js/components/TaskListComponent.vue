@@ -3,14 +3,46 @@
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col" @click="sortTasksById(id_flg)"><button>#</button></th>
-                    <th scope="col" @click="getTasksByCategoryId(category_id)"><button>category</button></th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Content</th>
-                    <th scope="col">Person In Charge</th>
-                    <th scope="col">Show</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col" @click="sortTasksById(id_flg)">
+                        <v-btn class="ma-2" small outlined color="success">
+                            ID
+                        </v-btn>
+                    </th>
+                    <th scope="col" @click="getTasksByCategoryId(category_id)">
+                        <v-btn class="ma-2" small outlined color="success">
+                            Category
+                        </v-btn>
+                    </th>
+                    <th scope="col">
+                        <v-btn class="ma-2" small outlined color="success">
+                            Title
+                        </v-btn>
+                    </th>
+                    <th scope="col">
+                        <v-btn class="ma-2" small outlined color="success">
+                            Edit
+                        </v-btn>
+                    </th>
+                    <th scope="col">
+                        <v-btn class="ma-2" small outlined color="success">
+                            Category
+                        </v-btn>
+                    </th>
+                    <th scope="col">
+                        <v-btn class="ma-2" small outlined color="success">
+                            Person In Charge
+                        </v-btn>
+                    </th>
+                    <th scope="col">
+                        <v-btn class="ma-2" small outlined color="success">
+                            Edit
+                        </v-btn>
+                    </th>
+                    <th scope="col">
+                        <v-btn class="ma-2" small outlined color="success">
+                            Delete
+                        </v-btn>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -65,7 +97,7 @@
             },
             // id_flgが１：降順、２：昇順　で並び替え
             sortTasksById(id_flg) {
-                if(id_flg === 1) {
+                if (id_flg === 1) {
                     this.id_flg = 2;
                 } else {
                     this.id_flg = 1;
@@ -77,7 +109,7 @@
             },
             // category_idで検索
             getTasksByCategoryId(category_id) {
-                if(category_id === 5) {
+                if (category_id === 5) {
                     this.category_id = 1;
                 }
                 axios.get('/api/tasks/category/' + this.category_id)
