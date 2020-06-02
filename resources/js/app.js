@@ -10,6 +10,9 @@ import TaskEditComponent from "./components/TaskEditComponent";
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
+Vue.use(Vuetify);
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
@@ -46,5 +49,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    vuetify: new Vuetify()
 });
